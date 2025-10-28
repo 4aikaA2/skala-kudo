@@ -42,24 +42,33 @@
     </script>
     <header class="site-header" id="home">
       <div class="container header-inner">
-        <div class="brand">
-          <img src="foto/skala_pskov.png" alt="СК Скала — Кудо Псков" class="brand-logo" />
-          <span class="brand-title">СК Скала Псков</span>
-        </div>
+        <a href="#home" class="brand">
+          <picture>
+            <source srcset="foto/skala_pskov_6_11zon.webp" type="image/webp">
+            <img src="foto/skala_pskov.png" alt="СК Скала — Кудо Псков" class="brand-logo" />
+          </picture>
+          <span class="brand-title">СК "Скала" Псков</span>
+        </a>
         <button class="nav-toggle" aria-label="Открыть меню" aria-expanded="false">☰</button>
         <nav class="site-nav">
           <a href="#schedule">Расписание</a>
-          <a href="#docs">Документы</a>
           <a href="#events">Соревнования</a>
+          <a href="#docs">Документы</a>
           <a href="#gallery">Фото</a>
           <a href="#contacts">Контакты</a>
         </nav>
         <div class="header-social">
           <a href="https://t.me/Viktor72Nevsky" target="_blank" rel="noopener" aria-label="Telegram">
-            <img src="foto/tg.png" alt="Telegram" class="header-icon" width="26" height="26" loading="lazy" decoding="async" />
+            <picture>
+              <source srcset="foto/tg_3_11zon.webp" type="image/webp">
+              <img src="foto/tg.png" alt="Telegram" class="header-icon" width="26" height="26" loading="lazy" decoding="async" />
+            </picture>
           </a>
           <a href="tel:+79602226598" aria-label="Позвонить тренеру">
-            <img src="foto/telephone.png" alt="Телефон" class="header-icon" width="26" height="26" loading="lazy" decoding="async" />
+            <picture>
+              <source srcset="foto/telephone_2_11zon.webp" type="image/webp">
+              <img src="foto/telephone.png" alt="Телефон" class="header-icon" width="26" height="26" loading="lazy" decoding="async" />
+            </picture>
           </a>
         </div>
       </div>
@@ -84,7 +93,10 @@
             <hr class="hero-divider" />
           </div>
           <div class="hero-media">
-            <img src="foto/skala_pskov.png" alt="СК Скала — Кудо" />
+            <picture>
+              <source srcset="foto/skala_pskov_6_11zon.webp" type="image/webp">
+              <img src="foto/skala_pskov.png" alt="СК Скала — Кудо" />
+            </picture>
           </div>
         </div>
       </section>
@@ -246,23 +258,7 @@
         </div>
       </section>
 
-      <section id="docs" class="section alt">
-        <div class="container">
-          <h2>Документы для допуска к соревнованиям</h2>
-          <ul class="doc-list">
-            <li>Заявление от родителя/спортсмена на участие</li>
-            <li>Медицинский допуск (действующий на дату соревнований)</li>
-            <li>Страховка от несчастных случаев (спорт)</li>
-            <li>Полис ОМС</li>
-            <li>Свидетельство о рождении/паспорт</li>
-            <li>Справка о регистрации по месту жительства (по требованию организатора)</li>
-            <li>Кю-допуск/аттестационная книжка (если есть)</li>
-          </ul>
-          <p class="note">Список может отличаться в зависимости от турнира. Точный перечень приходит в положении о соревнованиях.</p>
-        </div>
-      </section>
-
-      <section id="events" class="section">
+      <section id="events" class="section alt">
         <div class="container">
           <h2>Расписание соревнований</h2>
           <div class="table-wrap">
@@ -348,14 +344,83 @@
         </div>
       </section>
 
+      <section id="docs" class="section">
+        <div class="container">
+          <h2>Документы для допуска к соревнованиям</h2>
+          <ul class="doc-list">
+            <li>Заявление от родителя/спортсмена на участие</li>
+            <li>Медицинский допуск (действующий на дату соревнований)</li>
+            <li>Страховка от несчастных случаев (спорт)</li>
+            <li>Полис ОМС</li>
+            <li>Свидетельство о рождении/паспорт</li>
+            <li>Справка о регистрации по месту жительства (по требованию организатора)</li>
+            <li>Кю-допуск/аттестационная книжка (если есть)</li>
+          </ul>
+          <p class="note">Список может отличаться в зависимости от турнира. Точный перечень приходит в положении о соревнованиях.</p>
+        </div>
+      </section>
+
       <section id="gallery" class="section alt">
         <div class="container">
-          <h2>Фото</h2>
-          <div class="gallery-grid" data-gallery>
-            <a href="assets/img/photo1.svg" class="gallery-item"><img src="assets/img/photo1.svg" alt="Тренировка 1" width="320" height="180" loading="lazy" decoding="async" /></a>
-            <a href="assets/img/photo2.svg" class="gallery-item"><img src="assets/img/photo2.svg" alt="Тренировка 2" width="320" height="180" loading="lazy" decoding="async" /></a>
-            <a href="assets/img/photo3.svg" class="gallery-item"><img src="assets/img/photo3.svg" alt="Тренировка 3" width="320" height="180" loading="lazy" decoding="async" /></a>
-            <a href="assets/img/photo4.svg" class="gallery-item"><img src="assets/img/photo4.svg" alt="Тренировка 4" width="320" height="180" loading="lazy" decoding="async" /></a>
+          <h2>Альбомы</h2>
+          
+          <div class="albums-container">
+            <div class="photo-album">
+            <div class="album-cover">
+              <a href="sorevnovaniya/pskov_okt_2025/18-19_okt.jpg" data-album-gallery="Чемпионат и первенство Псковской области 18-19 октября 2025" data-album-count="3">
+                <div class="album-cover-inner">
+                  <picture>
+                    <source srcset="sorevnovaniya/pskov_okt_2025/18-19_okt_1_2_11zon.webp" type="image/webp">
+                    <img src="sorevnovaniya/pskov_okt_2025/18-19_okt.jpg" alt="Чемпионат и первенство Псковской области 18-19 октября 2025" loading="lazy" decoding="async" />
+                  </picture>
+                  <span class="album-count">3 фото</span>
+                </div>
+              </a>
+              <h3>Чемпионат и первенство Псковской области 18-19 октября 2025</h3>
+            </div>
+            <div class="gallery-grid" data-gallery data-album="Чемпионат и первенство Псковской области 18-19 октября 2025" style="display: none;">
+              <a href="sorevnovaniya/pskov_okt_2025/18-19_okt_1.jpg" class="gallery-item" data-caption="Чемпионат и первенство Псковской области 18-19 октября 2025">
+                <picture>
+                  <source srcset="sorevnovaniya/pskov_okt_2025/18-19_okt_1_11zon.webp" type="image/webp">
+                  <img src="sorevnovaniya/pskov_okt_2025/18-19_okt_1.jpg" alt="Чемпионат и первенство Псковской области 2025" loading="lazy" decoding="async" />
+                </picture>
+              </a>
+              <a href="sorevnovaniya/pskov_okt_2025/18-19_okt_2.jpg" class="gallery-item" data-caption="Чемпионат и первенство Псковской области 18-19 октября 2025">
+                <picture>
+                  <source srcset="sorevnovaniya/pskov_okt_2025/18-19_okt_2_3_11zon.webp" type="image/webp">
+                  <img src="sorevnovaniya/pskov_okt_2025/18-19_okt_2.jpg" alt="Чемпионат и первенство Псковской области 2025" loading="lazy" decoding="async" />
+                </picture>
+              </a>
+              <a href="sorevnovaniya/pskov_okt_2025/18-19_okt_3.jpg" class="gallery-item" data-caption="Чемпионат и первенство Псковской области 18-19 октября 2025">
+                <picture>
+                  <source srcset="sorevnovaniya/pskov_okt_2025/18-19_okt_3_4_11zon.webp" type="image/webp">
+                  <img src="sorevnovaniya/pskov_okt_2025/18-19_okt_3.jpg" alt="Чемпионат и первенство Псковской области 2025" loading="lazy" decoding="async" />
+                </picture>
+              </a>
+            </div>
+          
+          <div class="photo-album">
+            <div class="album-cover">
+              <a href="sorevnovaniya/vyborg_sent_2025/27-28_sent_vyborg.jpg" data-album-gallery="Первенство Ленинградской области 27-28 сентября 2025" data-album-count="1">
+                <div class="album-cover-inner">
+                  <picture>
+                    <source srcset="sorevnovaniya/vyborg_sent_2025/27-28_sent_vyborg_11zon.webp" type="image/webp">
+                    <img src="sorevnovaniya/vyborg_sent_2025/27-28_sent_vyborg.jpg" alt="Первенство Ленинградской области 27-28 сентября 2025" loading="lazy" decoding="async" />
+                  </picture>
+                  <span class="album-count">1 фото</span>
+                </div>
+              </a>
+              <h3>Первенство Ленинградской области 27-28 сентября 2025</h3>
+            </div>
+            <div class="gallery-grid" data-gallery data-album="Первенство Ленинградской области 27-28 сентября 2025" style="display: none;">
+              <a href="sorevnovaniya/vyborg_sent_2025/27-28_sent_vyborg.jpg" class="gallery-item" data-caption="Первенство Ленинградской области 27-28 сентября 2025">
+                <picture>
+                  <source srcset="sorevnovaniya/vyborg_sent_2025/27-28_sent_vyborg.webp" type="image/webp">
+                  <img src="sorevnovaniya/vyborg_sent_2025/27-28_sent_vyborg.jpg" alt="Первенство Ленинградской области 2025" loading="lazy" decoding="async" />
+                </picture>
+              </a>
+            </div>
+          </div>
           </div>
         </div>
       </section>
@@ -370,10 +435,16 @@
                 <p>Тел.: <a href="tel:+79602226598">+7 (960) 222‑65‑98</a></p>
                 <div class="contact-icons">
                   <a href="https://t.me/Viktor72Nevsky" target="_blank" rel="noopener" aria-label="Telegram">
-                    <img src="foto/tg.png" alt="Telegram" />
+                    <picture>
+                      <source srcset="foto/tg_3_11zon.webp" type="image/webp">
+                      <img src="foto/tg.png" alt="Telegram" />
+                    </picture>
                   </a>
                   <a href="https://vk.com/club178858756" target="_blank" rel="noopener" aria-label="VK">
-                    <img src="foto/vk.png" alt="VK" />
+                    <picture>
+                      <source srcset="foto/vk_4_11zon.webp" type="image/webp">
+                      <img src="foto/vk.png" alt="VK" />
+                    </picture>
                   </a>
                 </div>
             </div>
@@ -382,10 +453,16 @@
                 <p><a href="https://yandex.ru/maps/?text=%D0%9F%D1%81%D0%BA%D0%BE%D0%B2%2C%20%D1%83%D0%BB.%20%D0%A2%D1%80%D1%83%D0%B4%D0%B0%2C%2050%D0%B0" target="_blank" rel="noopener">Псков, ул. Труда, 50а, СК «Скала»</a></p>
                 <div class="contact-icons">
                   <a href="https://yandex.ru/maps/?text=%D0%9F%D1%81%D0%BA%D0%BE%D0%B2%2C%20%D1%83%D0%BB.%20%D0%A2%D1%80%D1%83%D0%B4%D0%B0%2C%2050%D0%B0" target="_blank" rel="noopener" aria-label="Яндекс.Карты">
-                    <img src="foto/Yandex.png" alt="Яндекс Карты" />
+                    <picture>
+                      <source srcset="foto/Yandex_5_11zon.webp" type="image/webp">
+                      <img src="foto/Yandex.png" alt="Яндекс Карты" />
+                    </picture>
                   </a>
                   <a href="https://2gis.ru/search/%D0%9F%D1%81%D0%BA%D0%BE%D0%B2%2C%20%D1%83%D0%BB.%20%D0%A2%D1%80%D1%83%D0%B4%D0%B0%2C%2050%D0%B0" target="_blank" rel="noopener" aria-label="2ГИС">
-                    <img src="foto/2GIS.png" alt="2ГИС" />
+                    <picture>
+                      <source srcset="foto/2GIS_1_11zon.webp" type="image/webp">
+                      <img src="foto/2GIS.png" alt="2ГИС" />
+                    </picture>
                   </a>
                 </div>
             </div>
@@ -403,10 +480,12 @@
 
     <div id="lightbox" class="lightbox" hidden>
       <button class="lightbox-close" aria-label="Закрыть">×</button>
+      <button class="lightbox-prev" aria-label="Предыдущее">‹</button>
       <figure style="margin:0; text-align:center;">
         <img class="lightbox-image" alt="" />
         <figcaption class="lightbox-caption" style="margin-top:10px;"></figcaption>
       </figure>
+      <button class="lightbox-next" aria-label="Следующее">›</button>
     </div>
 
     <script src="assets/js/main.js"></script>

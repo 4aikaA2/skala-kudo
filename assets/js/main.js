@@ -2,22 +2,6 @@
 var yearEl = document.getElementById('year');
 if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-// Плавный скролл
-document.querySelectorAll('a[href^="#"]').forEach(function (link) {
-  link.addEventListener('click', function (e) {
-    var targetId = this.getAttribute('href');
-    if (!targetId || targetId === '#') return;
-    var targetEl = document.querySelector(targetId);
-    if (targetEl) {
-      e.preventDefault();
-      targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      // закрыть меню на мобиле
-      siteNav.classList.remove('open');
-      navToggle.setAttribute('aria-expanded', 'false');
-    }
-  });
-});
-
 // Мобильное меню
 var navToggle = document.querySelector('.nav-toggle');
 var siteNav = document.querySelector('.site-nav');
@@ -28,23 +12,126 @@ if (navToggle && siteNav) {
   });
 }
 
-// Простой лайтбокс для галереи
+// Плавный скролл
+document.querySelectorAll('a[href^="#"]').forEach(function (link) {
+  link.addEventListener('click', function (e) {
+    var targetId = this.getAttribute('href');
+    if (!targetId || targetId === '#') return;
+    var targetEl = document.querySelector(targetId);
+    if (targetEl) {
+      e.preventDefault();
+      targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      // закрыть меню на мобиле
+      if (siteNav) siteNav.classList.remove('open');
+      if (navToggle) navToggle.setAttribute('aria-expanded', 'false');
+    }
+  });
+});
+
+// Специальный обработчик для кнопки "Наверх"
+var toTopBtn = document.querySelector('.to-top');
+if (toTopBtn) {
+  toTopBtn.addEventListener('click', function (e) {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    // закрыть меню на мобиле
+    if (siteNav) siteNav.classList.remove('open');
+    if (navToggle) navToggle.setAttribute('aria-expanded', 'false');
+  });
+}
+
+// Простой лайтбокс для галереи с навигацией
 (function () {
   var lightbox = document.getElementById('lightbox');
   if (!lightbox) return;
   var lightboxImg = lightbox.querySelector('.lightbox-image');
   var lightboxCaption = lightbox.querySelector('.lightbox-caption');
   var closeBtn = lightbox.querySelector('.lightbox-close');
+  var prevBtn = lightbox.querySelector('.lightbox-prev');
+  var nextBtn = lightbox.querySelector('.lightbox-next');
+  
+  var currentAlbum = null;
+  var currentIndex = 0;
+  var currentPhotos = [];
+  
+  function openPhoto(index) {
+    if (index < 0 || index >= currentPhotos.length) return;
+    currentIndex = index;
+    var photo = currentPhotos[index];
+    lightboxImg.src = photo.href;
+    if (lightboxCaption) lightboxCaption.textContent = photo.caption || '';
+  }
+  
+  function showPrev() {
+    if (currentIndex > 0) {
+      openPhoto(currentIndex - 1);
+    }
+  }
+  
+  function showNext() {
+    if (currentIndex < currentPhotos.length - 1) {
+      openPhoto(currentIndex + 1);
+    }
+  }
+  
+  // Обработчики для кнопок навигации
+  if (prevBtn) prevBtn.addEventListener('click', showPrev);
+  if (nextBtn) nextBtn.addEventListener('click', showNext);
+  
+  // Навигация с клавиатуры
+  document.addEventListener('keydown', function(e) {
+    if (lightbox.hidden) return;
+    if (e.key === 'ArrowLeft') showPrev();
+    if (e.key === 'ArrowRight') showNext();
+  });
+  
+  // Обработчик для обложек альбомов - открывает первую фотографию альбома
+  document.querySelectorAll('[data-album-gallery]').forEach(function (cover) {
+    cover.addEventListener('click', function (e) {
+      e.preventDefault();
+      var albumName = cover.getAttribute('data-album-gallery');
+      var gallery = document.querySelector('[data-album="' + albumName + '"]');
+      if (gallery) {
+        currentPhotos = Array.prototype.slice.call(gallery.querySelectorAll('a')).map(function(a) {
+          return { href: a.getAttribute('href'), caption: a.getAttribute('data-caption') };
+        });
+        currentAlbum = albumName;
+        currentIndex = 0;
+        if (currentPhotos.length > 0) {
+          openPhoto(0);
+          lightbox.hidden = false;
+          document.body.style.overflow = 'hidden';
+        }
+      }
+    });
+  });
 
   document.querySelectorAll('[data-gallery] a').forEach(function (item) {
     item.addEventListener('click', function (e) {
-      var href = item.getAttribute('href');
-      if (!href) return;
       e.preventDefault();
-      lightboxImg.src = href;
-      if (lightboxCaption) lightboxCaption.textContent = item.getAttribute('data-caption') || '';
-      lightbox.hidden = false;
-      document.body.style.overflow = 'hidden';
+      var gallery = item.closest('[data-gallery]');
+      if (gallery) {
+        var album = gallery.getAttribute('data-album');
+        if (album) {
+          // Если это альбом, загружаем все фото
+          currentPhotos = Array.prototype.slice.call(gallery.querySelectorAll('a')).map(function(a) {
+            return { href: a.getAttribute('href'), caption: a.getAttribute('data-caption') };
+          });
+          currentAlbum = album;
+          var href = item.getAttribute('href');
+          currentIndex = currentPhotos.findIndex(function(p) { return p.href === href; });
+          if (currentIndex === -1) currentIndex = 0;
+        } else {
+          // Иначе просто показываем фото
+          var href = item.getAttribute('href');
+          if (href) {
+            lightboxImg.src = href;
+            if (lightboxCaption) lightboxCaption.textContent = item.getAttribute('data-caption') || '';
+            lightbox.hidden = false;
+            document.body.style.overflow = 'hidden';
+          }
+        }
+      }
     });
   });
 
@@ -73,7 +160,8 @@ if (coachName) {
     if (!lightbox) return;
     var lightboxImg = lightbox.querySelector('.lightbox-image');
     var lightboxCaption = lightbox.querySelector('.lightbox-caption');
-    lightboxImg.src = 'foto/Ozyumenko_Viktor_Vladimirovich.jpg';
+    // Используем WebP версию
+    lightboxImg.src = 'foto/Ozyumenko_Viktor_Vladimirovich_4_11zon.webp';
     if (lightboxCaption) lightboxCaption.textContent = 'Чёрный пояс, 3 дан. Судья первой категории';
     lightbox.hidden = false;
     document.body.style.overflow = 'hidden';
@@ -132,7 +220,8 @@ if (coachName) {
     if (!lightbox) return;
     var lightboxImg = lightbox.querySelector('.lightbox-image');
     var lightboxCaption = lightbox.querySelector('.lightbox-caption');
-    lightboxImg.src = 'foto/poyas_kudo.jpeg';
+    // Используем WebP версию
+    lightboxImg.src = 'foto/poyas_kudo_5_11zon.webp';
     if (lightboxCaption) lightboxCaption.textContent = 'Чёрный пояс, 3 дан';
     lightbox.hidden = false;
     document.body.style.overflow = 'hidden';
