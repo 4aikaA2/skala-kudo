@@ -216,10 +216,10 @@ a:hover { color: var(--accent); }
 .table-wrap { overflow-x: auto; border: none; border-radius: 12px; background: var(--card); box-shadow: 0 2px 12px rgba(46, 168, 255, 0.1); }
 .table { width: 100%; border-collapse: separate; border-spacing: 0; min-width: 640px; table-layout: fixed; }
 .table th, .table td { padding: 16px 18px; text-align: left; vertical-align: middle; }
-.table th:nth-child(1), .table td:nth-child(1) { width: 30%; }
-.table th:nth-child(2), .table td:nth-child(2) { width: 20%; text-align: center; }
+.table th:nth-child(1), .table td:nth-child(1) { width: 15%; }
+.table th:nth-child(2), .table td:nth-child(2) { width: 45%; text-align: left; }
 .table th:nth-child(3), .table td:nth-child(3) { width: 20%; text-align: center; }
-.table th:nth-child(4), .table td:nth-child(4) { width: 30%; text-align: center; }
+.table th:nth-child(4), .table td:nth-child(4) { width: 20%; text-align: center; }
 .table th:first-child, .table td:first-child { border-radius: 8px 0 0 8px; }
 .table th:last-child, .table td:last-child { border-radius: 0 8px 8px 0; }
 .table thead th { background: linear-gradient(135deg, #e8f4ff 0%, #f1f5f9 100%); color: var(--text); font-weight: 600; position: sticky; top: 0; z-index: 1; text-transform: uppercase; font-size: 13px; letter-spacing: 0.5px; }
