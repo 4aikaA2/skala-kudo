@@ -172,8 +172,7 @@ if (coachName) {
     if (!lightbox) return;
     var lightboxImg = lightbox.querySelector('.lightbox-image');
     var lightboxCaption = lightbox.querySelector('.lightbox-caption');
-    // Используем WebP версию
-    lightboxImg.src = 'foto/Ozyumenko_Viktor_Vladimirovich_4_11zon.webp';
+    lightboxImg.src = 'foto/Ozyumenko_Viktor_Vladimirovich.jpg';
     if (lightboxCaption) lightboxCaption.textContent = 'Чёрный пояс, 3 дан. Судья первой категории';
     lightbox.hidden = false;
     document.body.style.overflow = 'hidden';
@@ -233,7 +232,7 @@ if (coachName) {
     var lightboxImg = lightbox.querySelector('.lightbox-image');
     var lightboxCaption = lightbox.querySelector('.lightbox-caption');
     // Используем WebP версию
-    lightboxImg.src = 'foto/poyas_kudo_5_11zon.webp';
+    lightboxImg.src = 'foto/poyas_kudo.jpeg';
     if (lightboxCaption) lightboxCaption.textContent = 'Чёрный пояс, 3 дан';
     lightbox.hidden = false;
     document.body.style.overflow = 'hidden';
