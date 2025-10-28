@@ -316,7 +316,7 @@ a:hover { color: var(--accent); }
   .table th, .table td { padding: 12px 12px; }
   /* Соревнования: уплотняем и скрываем колонку Город */
   #events .table { min-width: 0; table-layout: fixed; }
-  #events .table th:nth-child(3), #events .table td:nth-child(3) { display: none; }
+  #events .table th:nth-child(3), #events .table td:nth-child(3) { display: table-cell; }
   #events .table th:nth-child(1), #events .table td:nth-child(1) { width: 92px; }
   #events .table th:nth-child(4), #events .table td:nth-child(4) { width: 100px; }
 
