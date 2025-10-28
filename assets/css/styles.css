@@ -420,33 +420,40 @@ a:hover { color: var(--accent); }
   .footer-inner { flex-direction: column; gap: 8px; }
 }
 
-/* Стили для мобильной версии - город в ячейке даты */
+/* Стили для мобильной версии - отображаем все колонки */
 @media (max-width: 768px) {
-  /* Скрываем отдельную колонку города на мобильных */
+  /* Показываем все колонки на мобильных */
   #events .table th:nth-child(3), #events .table td:nth-child(3) { 
-    display: none; 
+    display: table-cell; 
   }
   
-  /* Добавляем город в ячейку даты через CSS для каждой строки */
-  #events .table tbody tr:nth-child(1) td:first-child::after { content: ", Иваново"; }
-  #events .table tbody tr:nth-child(2) td:first-child::after { content: ", Выборг"; }
-  #events .table tbody tr:nth-child(3) td:first-child::after { content: ", Боровск"; }
-  #events .table tbody tr:nth-child(4) td:first-child::after { content: ", Москва"; }
-  #events .table tbody tr:nth-child(5) td:first-child::after { content: ", Псков"; }
-  #events .table tbody tr:nth-child(6) td:first-child::after { content: ", Вологда"; }
-  #events .table tbody tr:nth-child(7) td:first-child::after { content: ", Санкт‑Петербург"; }
-  #events .table tbody tr:nth-child(8) td:first-child::after { content: ", Псков"; }
-  #events .table tbody tr:nth-child(9) td:first-child::after { content: ", Москва"; }
-  #events .table tbody tr:nth-child(10) td:first-child::after { content: ", Вологда"; }
-  #events .table tbody tr:nth-child(11) td:first-child::after { content: ", Москва"; }
-  #events .table tbody tr:nth-child(12) td:first-child::after { content: ", Вологда"; }
-  #events .table tbody tr:nth-child(13) td:first-child::after { content: ", Псков"; }
+  /* Добавляем горизонтальную прокрутку для таблицы */
+  #events .table-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
   
-  /* Стили для добавленного текста города */
-  #events .table tbody td:first-child::after {
-    display: inline;
-    font-weight: 500;
-    color: var(--text-light);
+  #events .table {
+    min-width: 600px;
+    table-layout: fixed;
+  }
+  
+  /* Уменьшаем ширину колонок для экономии места */
+  #events .table th:nth-child(1), #events .table td:nth-child(1) { 
+    width: 100px; 
+    font-size: 13px;
+  }
+  #events .table th:nth-child(2), #events .table td:nth-child(2) { 
+    width: 200px;
+    font-size: 13px;
+  }
+  #events .table th:nth-child(3), #events .table td:nth-child(3) { 
+    width: 120px;
+    font-size: 13px;
+  }
+  #events .table th:nth-child(4), #events .table td:nth-child(4) { 
+    width: 150px;
+    font-size: 13px;
   }
 }
 
