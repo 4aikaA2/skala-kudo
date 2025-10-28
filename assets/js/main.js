@@ -40,6 +40,18 @@ if (toTopBtn) {
   });
 }
 
+// Обработчик для логотипа - прокрутка наверх
+var brandLogo = document.getElementById('scrollToTop');
+if (brandLogo) {
+  brandLogo.addEventListener('click', function (e) {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    // закрыть меню на мобиле
+    if (siteNav) siteNav.classList.remove('open');
+    if (navToggle) navToggle.setAttribute('aria-expanded', 'false');
+  });
+}
+
 // Простой лайтбокс для галереи с навигацией
 (function () {
   var lightbox = document.getElementById('lightbox');

@@ -61,12 +61,12 @@ main, .site-header, .site-footer { position: relative; z-index: 1; }
   body::after, html::after { display: none; }
   /* Японская надпись на мобильных - делаем крупнее и заметнее */
   body::before {
-    display: block;
-    font-size: min(12vh, 80px);
-    left: -30px;
-    letter-spacing: 6px;
-    color: rgba(15, 23, 42, 0.08);
-    font-weight: 800;
+    display: block !important;
+    font-size: min(12vh, 80px) !important;
+    left: -30px !important;
+    letter-spacing: 6px !important;
+    color: rgba(15, 23, 42, 0.08) !important;
+    font-weight: 800 !important;
   }
 }
 
@@ -455,4 +455,15 @@ a:hover { color: var(--accent); }
   .gallery-item img { height: 180px; }
 }
 
+/* Японская надпись на мобильных */
+@media (max-width: 900px) {
+  body::before {
+    display: block !important;
+    font-size: min(12vh, 90px) !important;
+    left: -20px !important;
+    letter-spacing: 6px !important;
+    color: rgba(15, 23, 42, 0.12) !important;
+    font-weight: 800 !important;
+  }
+}
 
