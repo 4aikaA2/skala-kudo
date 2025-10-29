@@ -102,6 +102,37 @@ if (brandLogo) {
     if (e.key === 'ArrowRight') showNext();
   });
   
+  // Свайп для мобильных устройств
+  var touchStartX = 0;
+  var touchEndX = 0;
+  var minSwipeDistance = 50; // минимальная дистанция для свайпа
+  
+  lightbox.addEventListener('touchstart', function(e) {
+    touchStartX = e.changedTouches[0].screenX;
+  }, { passive: true });
+  
+  lightbox.addEventListener('touchend', function(e) {
+    touchEndX = e.changedTouches[0].screenX;
+    handleSwipe();
+  }, { passive: true });
+  
+  function handleSwipe() {
+    var swipeDistance = touchStartX - touchEndX;
+    
+    // Свайп влево (следующее фото)
+    if (swipeDistance > minSwipeDistance) {
+      showNext();
+    }
+    // Свайп вправо (предыдущее фото)
+    else if (swipeDistance < -minSwipeDistance) {
+      showPrev();
+    }
+    
+    // Сброс значений
+    touchStartX = 0;
+    touchEndX = 0;
+  }
+  
   // Обработчик для обложек альбомов - открывает первую фотографию альбома
   document.querySelectorAll('[data-album-gallery]').forEach(function (cover) {
     cover.addEventListener('click', function (e) {
