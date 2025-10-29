@@ -5,6 +5,13 @@ if (yearEl) yearEl.textContent = new Date().getFullYear();
 // Мобильное меню
 var navToggle = document.querySelector('.nav-toggle');
 var siteNav = document.querySelector('.site-nav');
+
+// Функция закрытия меню (убираем дублирование)
+function closeMobileMenu() {
+  if (siteNav) siteNav.classList.remove('open');
+  if (navToggle) navToggle.setAttribute('aria-expanded', 'false');
+}
+
 if (navToggle && siteNav) {
   navToggle.addEventListener('click', function () {
     var isOpen = siteNav.classList.toggle('open');
@@ -21,9 +28,7 @@ document.querySelectorAll('a[href^="#"]').forEach(function (link) {
     if (targetEl) {
       e.preventDefault();
       targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      // закрыть меню на мобиле
-      if (siteNav) siteNav.classList.remove('open');
-      if (navToggle) navToggle.setAttribute('aria-expanded', 'false');
+      closeMobileMenu();
     }
   });
 });
@@ -220,6 +225,78 @@ if (coachName) {
     var next = upcoming[0].tr;
     next.classList.add('next-event');
   }
+})();
+
+// Добавление кружочков поясов к датам соревнований
+(function () {
+  var eventsTable = document.querySelector('#events .table tbody');
+  if (!eventsTable) return;
+  
+  // Все 7 поясов (для "Все возраста") - с белым в начале
+  var allBelts = [
+    { class: 'belt-white', name: 'Белый' },
+    { class: 'belt-purple', name: 'Фиолетовый' },
+    { class: 'belt-dark-blue', name: 'Темно-синий' },
+    { class: 'belt-yellow', name: 'Желтый' },
+    { class: 'belt-teal', name: 'Бирюзовый' },
+    { class: 'belt-brown', name: 'Коричневый' },
+    { class: 'belt-black', name: 'Черный' }
+  ];
+  
+  // 4 пояса (для "12 лет и старше")
+  var seniorBelts = [
+    { class: 'belt-yellow', name: 'Желтый' },
+    { class: 'belt-teal', name: 'Бирюзовый' },
+    { class: 'belt-brown', name: 'Коричневый' },
+    { class: 'belt-black', name: 'Черный' }
+  ];
+  
+  var rows = eventsTable.querySelectorAll('tr');
+  rows.forEach(function (row) {
+    var tournamentCell = row.cells[1]; // Ячейка с названием турнира
+    var ageCell = row.cells[3];
+    
+    if (!tournamentCell || !ageCell) return;
+    
+    // Проверим, нет ли уже кружочков
+    if (tournamentCell.querySelector('.belt-indicators')) return;
+    
+    var ageText = ageCell.textContent.trim();
+    var beltsToShow = [];
+    
+    // Определяем набор поясов по возрасту
+    if (ageText === 'Все возраста') {
+      beltsToShow = allBelts;
+    } else if (ageText === '12 лет и старше' || (ageText.includes('12+') && !ageText.includes(','))) {
+      // Точное совпадение "12 лет и старше" или "12+" без запятых - 4 пояса
+      beltsToShow = seniorBelts;
+    } else if (ageText.includes(',') || ageText.includes('Фестиваль') || (ageText.includes('и') && !ageText.includes('12 лет и старше'))) {
+      // Если есть запятая, упоминание фестиваля или союз "и" (кроме "12 лет и старше") - все пояса
+      beltsToShow = allBelts;
+    } else if (ageText.includes('18') || ageText.includes('21')) {
+      // Для взрослых также 4 пояса (если нет запятых и фестиваля)
+      beltsToShow = seniorBelts;
+    } else {
+      // По умолчанию все пояса
+      beltsToShow = allBelts;
+    }
+    
+    // Добавим кружочки поясов под название турнира
+    var beltContainer = document.createElement('div');
+    beltContainer.className = 'belt-indicators';
+    beltContainer.setAttribute('aria-label', 'Пояса: ' + beltsToShow.map(function(b) { return b.name; }).join(', '));
+    
+    beltsToShow.forEach(function (belt) {
+      var circle = document.createElement('span');
+      circle.className = 'belt-circle ' + belt.class;
+      circle.setAttribute('title', belt.name);
+      beltContainer.appendChild(circle);
+    });
+    
+    // Добавим после текста турнира
+    tournamentCell.appendChild(document.createElement('br'));
+    tournamentCell.appendChild(beltContainer);
+  });
 })();
 
 // Открытие фото пояса по клику на "чёрный пояс, 3 дан"
